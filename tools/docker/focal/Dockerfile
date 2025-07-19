@@ -34,4 +34,5 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 \
     --slave /usr/bin/gcov gcov /usr/bin/gcov-10
 RUN update-alternatives --config gcc
 
+RUN ln -s /usr/bin/gcc-10 /usr/bin/cc
 USER docker
