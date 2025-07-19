@@ -10,11 +10,11 @@
 ### USER INTERFACE SETTINGS ###
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
-  GREETING0="##############################################"
-  GREETING1="#                 LibreELEC                  #"
-  GREETING2="#            https://libreelec.tv            #"
-  GREETING3="##############################################"
-  GREETING4=""
+  GREETING0="################################################"
+  GREETING1="#                  LibreELEC                   #"
+  GREETING2="#             https://libreelec.tv             #"
+  GREETING3="# with changes by mossroy for k3s and longhorn #"
+  GREETING4="################################################"
 
 # Root password to integrate in the target system
   ROOT_PASSWORD="libreelec"
@@ -194,7 +194,7 @@
   DEBUG_GROUP_YES="kodi+"
 
 # build and install iSCSI support - iscsistart (yes / no)
-  ISCSI_SUPPORT="no"
+  ISCSI_SUPPORT="yes"
 
 # build with NFS support (mounting nfs shares via the OS) (yes / no)
   NFS_SUPPORT="yes"
