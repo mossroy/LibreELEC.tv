@@ -13,7 +13,7 @@
   GREETING0="################################################"
   GREETING1="#       LibreELEC   https://libreelec.tv       #"
   GREETING2="# with changes by mossroy and ziporah for k3s  #"
-  GREETING3="#       and iSCSI support (for Longhorn)       #"
+  GREETING3="# and iSCSI support (for Longhorn) and Calico  #"
   GREETING4="################################################"
 
 # Root password to integrate in the target system
