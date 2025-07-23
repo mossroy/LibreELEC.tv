@@ -11,9 +11,9 @@
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="################################################"
-  GREETING1="#                  LibreELEC                   #"
-  GREETING2="#             https://libreelec.tv             #"
-  GREETING3="# with changes by mossroy for k3s and longhorn #"
+  GREETING1="#       LibreELEC   https://libreelec.tv       #"
+  GREETING2="# with changes by mossroy and ziporah for k3s  #"
+  GREETING3="#       and iSCSI support (for Longhorn)       #"
   GREETING4="################################################"
 
 # Root password to integrate in the target system
