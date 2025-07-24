@@ -148,7 +148,7 @@ ln -sfn /usr/sbin ${INSTALL}/sbin
 
 # Create custom folders and symlinks for k3s, longhorn and calico
 if [ "${CUSTOM_FOLDERS}x" != "x" ]; then
-  for directory in mnt/microk8s net/backup net/rpi net/samba net/tftpboot net/torrent net/video storage/rancher/etc-cni storage/rancher/etc-containerd storage/rancher/etc storage/rancher/libexec storage/opt storage/custom-boot; do
+  for directory in mnt/microk8s net/backup net/rpi net/samba net/tftpboot net/torrent net/video storage/rancher/etc-cni storage/rancher/etc-containerd storage/rancher/etc storage/rancher/libexec storage/opt storage/var-lib storage/custom-boot; do
     mkdir -p ${INSTALL}/${directory}
   done
   ln -sfn /storage/rancher/etc-cni ${INSTALL}/etc/cni
