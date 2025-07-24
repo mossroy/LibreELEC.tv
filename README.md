@@ -4,7 +4,7 @@ LibreELEC is a 'Just enough OS' Linux distribution for the award-winning [Kodi](
 
 ## About this fork
 
-This fork allows to run a Kubernetes node (with [k3s](https://k3s.io/)) on the same device as . The goal is to take advantage of the resources of a 24/7 running mediacentre.
+This fork allows to run a Kubernetes node (with [k3s](https://k3s.io/)) on the same device as LibreElec. The goal is to take advantage of the resources of a 24/7 running mediacentre.
 
 This fork also allows to use [Longhorn](https://longhorn.io/) for the kubernetes storage (which requires iSCSI support). It has also been tested with NFS and local-path.
 
