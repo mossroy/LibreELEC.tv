@@ -146,25 +146,10 @@ ln -sfn /usr/lib ${INSTALL}/lib
 ln -sfn /usr/bin ${INSTALL}/bin
 ln -sfn /usr/sbin ${INSTALL}/sbin
 
-# Create custom folders and symlinks for k3s, longhorn and calico
-if [ "${CUSTOM_FOLDERS}x" != "x" ]; then
-  for directory in mnt/microk8s net/backup net/rpi net/samba net/tftpboot net/torrent net/video storage/rancher/etc-cni storage/rancher/etc-containerd storage/rancher/etc storage/rancher/libexec storage/opt storage/var-lib storage/custom-boot; do
-    mkdir -p ${INSTALL}/${directory}
-  done
-  ln -sfn /storage/rancher/etc-cni ${INSTALL}/etc/cni
-  ln -sfn /storage/rancher/etc ${INSTALL}/etc/rancher
-  ln -sfn /storage/rancher/etc-containerd ${INSTALL}/etc/containerd
-  ln -sfn /storage/rancher/etc-calico ${INSTALL}/etc/calico
-  ln -sfn /storage/rancher/libexec ${INSTALL}/usr/libexec/kubernetes
-  ln -sfn /storage/opt ${INSTALL}/opt
-  # ln -sfn /storage/custom-boot ${INSTALL}/boot
-
-#  ln -sfn /storage/rancher/var/rancher ${INSTALL}/var/lib/rancher
-#  ln -sfn /storage/rancher/var/calico ${INSTALL}/var/lib/calico
-#  ln -sfn /storage/rancher/var/cni ${INSTALL}/var/lib/cni
-#  ln -sfn /storage/rancher/var/kubelet ${INSTALL}/var/lib/kubelet
-
-fi
+# Create some folders, so that can be bind mounted to a persistent storage
+for directory in etc/calico etc/rancher etc/cni etc/containerd usr/libexec/kubernetes opt var/lib; do
+  mkdir -p ${INSTALL}/${directory}
+done
 
 if [ "${TARGET_ARCH}" = "x86_64" ]; then
   ln -sfn /usr/lib ${INSTALL}/lib64
@@ -252,15 +237,9 @@ ln -sT /run/kernel-overlays/modules ${INSTALL}/usr/lib/modules
 ln -sT /run/kernel-overlays/firmware ${INSTALL}/usr/lib/firmware
 
 # Create boot/config file for longhorn
-if [ "${CUSTOM_FOLDERS}x" != "x" ]; then
-  for directory in  boot; do
-    mkdir -p ${INSTALL}/${directory}
-  done
+mkdir -p ${INSTALL}/boot
 BOOT_CONFIG="${BUILD}/build/linux-${MODVER}/.config"
-  # copy the config to /boot
-  echo "BOOT_CONFIG:  ${BOOT_CONFIG}"
-  cp  ${BOOT_CONFIG} ${INSTALL}/boot/config-${MODVER}
-fi
+cp  ${BOOT_CONFIG} ${INSTALL}/boot/config-${MODVER}
 
 # Make target dir
 mkdir -p ${TARGET_IMG}

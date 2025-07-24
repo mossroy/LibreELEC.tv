@@ -14,10 +14,10 @@ Regarding networking, this fork also allows to use [Calico](https://docs.tigera.
 
 Reference: https://wiki.libreelec.tv/development/build-docker
 
-The only difference is to pass `CUSTOM_FOLDERS` and `BUILDER_NAME` variables:
+The only difference is to pass `BUILDER_NAME` variable, to help LibreElec maintainers recognize this variant:
 
     docker build --pull -t libreelec tools/docker/focal
-    docker run -it --rm --log-driver none -v `pwd`:/build -w /build --memory "6g" --memory-swap "6g" --cpus "6" -e PROJECT=Generic -e ARCH=x86_64 -e MTPROGRESS=yes -e BUILDER_NAME=mossroy -e CUSTOM_FOLDERS=yes libreelec make image
+    docker run -it --rm --log-driver none -v `pwd`:/build -w /build --memory "6g" --memory-swap "6g" --cpus "6" -e PROJECT=Generic -e ARCH=x86_64 -e MTPROGRESS=yes -e BUILDER_NAME=mossroy -e libreelec make image
 
 (Adjust cpu to your hardware)
 
@@ -27,11 +27,24 @@ x86-64 binaries are available on https://download.mossroy.fr/LibreELEC/
 
 ### How to install k3s
 
+A prerequisite is to create some directories on your device, to allow persistent storage of some directories. Login with SSH on it, and run the following commands (some of them might be skipped, depending on you usage, but it won't hurt to run them all):
+
+    mkdir -p /storage/persistent-fs-dirs/k3s-systemd
+    mkdir -p /storage/persistent-fs-dirs/k3s-bin
+    mkdir -p /storage/persistent-fs-dirs/var-lib
+    mkdir -p /storage/persistent-fs-dirs/etc-rancher
+    mkdir -p /storage/persistent-fs-dirs/etc-containerd
+    mkdir -p /storage/persistent-fs-dirs/usr-libexec-kubernetes
+    # For Calico
+    mkdir -p /storage/persistent-fs-dirs/etc-cni
+    mkdir -p /storage/persistent-fs-dirs/etc-calico
+    mkdir -p /storage/persistent-fs-dirs/opt
+
 The following deploys a k3s node for an existing k3s cluster. However, it certainly works to deploy it as a control-plane, too (untested).
 
 Login with SSH on your LibreElec device, and install it with:
 
-    curl -sfL https://get.k3s.io | INSTALL_K3S_SYSTEMD_DIR=/storage/k3s-systemd INSTALL_K3S_BIN_DIR=/storage/k3s-bin K3S_URL=https://your-control-plane:6443 K3S_TOKEN=K101bfdda519dc15b3c9400bf91d8ea70961152d44f686bc3feee481481f76157ad::server:01ad7a756859e4a9133a7ebd2c5d54cc sh -s -
+    curl -sfL https://get.k3s.io | INSTALL_K3S_SYSTEMD_DIR=/storage/persistent-fs-dirs/k3s-systemd INSTALL_K3S_BIN_DIR=/storage/persistent-fs-dirs/k3s-bin K3S_URL=https://your-control-plane:6443 K3S_TOKEN=K101bfdda519dc15b3c9400bf91d8ea70961152d44f686bc3feee481481f76157ad::server:01ad7a756859e4a9133a7ebd2c5d54cc sh -s -
 
 (replace K3S_URL and K3S_TOKEN accordingly)
 

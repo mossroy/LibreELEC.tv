@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent /etc/calico Storage
+RequiresMountsFor=/storage
+DefaultDependencies=no
+ConditionPathExists=|/storage/persistent-fs-dirs/etc-calico
+
+[Mount]
+What=/storage/persistent-fs-dirs/etc-calico
+Where=/etc/calico
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

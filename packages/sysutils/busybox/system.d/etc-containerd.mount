@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent /etc/containerd Storage
+RequiresMountsFor=/storage
+DefaultDependencies=no
+ConditionPathExists=|/storage/persistent-fs-dirs/etc-containerd
+
+[Mount]
+What=/storage/persistent-fs-dirs/etc-containerd
+Where=/etc/containerd
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

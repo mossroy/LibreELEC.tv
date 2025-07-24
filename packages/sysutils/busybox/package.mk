@@ -174,6 +174,13 @@ post_install() {
   enable_service vfd-clock.service
   enable_service var.mount
   enable_service locale.service
+  enable_service var-lib.mount
+  enable_service etc-calico.mount
+  enable_service etc-cni.mount
+  enable_service etc-containerd.mount
+  enable_service etc-rancher.mount
+  enable_service opt.mount
+  enable_service usr-libexec-kubernetes.mount
   listcontains "${FIRMWARE}" "rpi-eeprom" && enable_service rpi-flash-firmware.service
 
   # cron support

@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent /opt Storage
+RequiresMountsFor=/storage
+DefaultDependencies=no
+ConditionPathExists=|/storage/persistent-fs-dirs/opt
+
+[Mount]
+What=/storage/persistent-fs-dirs/opt
+Where=/opt
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

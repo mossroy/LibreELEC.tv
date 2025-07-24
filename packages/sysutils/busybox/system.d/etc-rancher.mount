@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent /etc/rancher Storage
+RequiresMountsFor=/storage
+DefaultDependencies=no
+ConditionPathExists=|/storage/persistent-fs-dirs/etc-rancher
+
+[Mount]
+What=/storage/persistent-fs-dirs/etc-rancher
+Where=/etc/rancher
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Persistent /usr/libexec/kubernetes Storage
+RequiresMountsFor=/storage
+DefaultDependencies=no
+ConditionPathExists=|/storage/persistent-fs-dirs/usr-libexec-kubernetes
+
+[Mount]
+What=/storage/persistent-fs-dirs/usr-libexec-kubernetes
+Where=/usr/libexec/kubernetes
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

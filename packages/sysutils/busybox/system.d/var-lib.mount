@@ -2,9 +2,12 @@
 Description=Persistent /var/lib Storage
 RequiresMountsFor=/var /storage
 DefaultDependencies=no
-ConditionPathExists=|/storage/var-lib
+ConditionPathExists=|/storage/persistent-fs-dirs/var-lib
 
 [Mount]
-What=/storage/var-lib
+What=/storage/persistent-fs-dirs/var-lib
 Where=/var/lib
 Options=bind
+
+[Install]
+WantedBy=local-fs.target
