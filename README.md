@@ -10,6 +10,8 @@ This fork also allows to use [Longhorn](https://longhorn.io/) for the kubernetes
 
 Regarding networking, this fork also allows to use [Calico](https://docs.tigera.io/calico/). But it also works with the default CNI of k3s (Flannel)
 
+Contributors for this fork: https://github.com/ziporah and https://github.com/mossroy
+
 ### How to compile
 
 Reference: https://wiki.libreelec.tv/development/build-docker
